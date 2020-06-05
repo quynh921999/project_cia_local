@@ -1,0 +1,396 @@
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #adadad;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #7f7f7f;
+}
+
+p.change-name {
+    margin-bottom: 0px !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.node {
+    cursor: pointer;
+    color: blue;
+}
+.node :hover{
+    color: blue;
+}
+.view{
+    /*border: 1px #777777 solid;*/
+    padding: 0px 0px 0px 0px !important;
+    margin: 0px 0px 0px 0px !important;
+}
+.view div{
+    padding: 0px 0px 0px 0px !important;
+    margin: 0px 0px 0px 0px !important;
+}
+
+
+/*svg{*/
+    /*font-family: Arial, Helvetica, sans-serif;*/
+/*}*/
+form{
+    color: black !important;
+}
+body{
+    display: flex;
+    overflow: hidden;
+
+}
+button{
+    border: none;
+    padding: 3px 3px 3px 3px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    width: 25%;
+    margin-left: 4%;
+    margin-bottom: 5%;
+    margin-right: 4%;
+    border: 1px #444444 solid;
+}
+.main-view{
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    overflow: hidden;
+    margin: 0px 0px 0px 0px !important;
+}
+.project-view .main-view, .project-search-view .main-view{
+    overflow: auto;
+
+}
+.change-set .main-view {
+    border: none;
+    overflow: auto;
+    display: block;
+    color: white;
+}
+.change-set .main-view .change-types{
+    padding-left: 20px;
+    line-height: 8px;
+}
+.change-set .main-view .change-name{
+    padding-left: 10px;
+    font-weight: 600;
+}
+.change-node{
+    white-space: nowrap;
+    min-width: 100%;
+    cursor: pointer;
+    padding-top: 15px !important;
+    float: left;
+    background-color: rgba(0,0,0,0);
+    
+}
+.change-set .main-view .change-node:hover{
+    background-color: #3F7D9E;
+}
+
+
+.impact-set .main-view{
+    border: none;
+    overflow: auto;
+    display: block;
+    color: white;
+}
+.impact-node{
+    min-width: 100%;
+    white-space: nowrap;
+    cursor: pointer;
+    float: left;
+    line-height: 26px;
+    padding-left: 10px;
+    height: 26px;
+    background-color: rgba(0,0,0,0);
+}
+.impact-node p{
+    padding-left: 15px !important;
+}
+.impact-node:hover{
+    background-color: #3F7D9E;
+}
+.loader{
+    margin: 0;
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.attribute-view .main-view{
+    overflow: auto;
+}
+.attribute-view{
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #37474F;
+    color: white;
+}
+.attribute-view .main-view{
+    padding-bottom: 0px;
+    padding-top: 10px;
+}
+g .class-detail text{
+    /*border: 3px solid gray;*/
+    fill: black;
+}
+g .class-detail .title text{
+    text-anchor: middle;
+    font-size: 16px;
+    fill: black;
+    stroke: 1px;
+    font-weight: bold;
+}
+g .class-detail .title rect{
+    fill: white;
+    stroke: black;
+}
+
+g .class-detail text {
+    stroke: none;
+    text-decoration: none;
+}
+g .attr {
+    text-decoration: none;
+}
+g .attr :hover{
+    text-decoration: underline;
+}
+
+.node text {
+    color: green;
+    /*font: sans-serif;*/
+}
+.attr rect{
+    stroke-width: 0px;
+}
+.link {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+}
+.link_fullgraph{
+    fill: none;
+    stroke: #aaa;
+    stroke-width: 2px;
+}
+.d3-context-menu {
+    position: absolute;
+    display: none;
+    background-color: #f2f2f2;
+    padding: 0px 0px 0px 0px;
+    border-radius: 1px;
+    /*font-family: Arial, sans-serif;*/
+    font-size: 14px;
+    min-width: 100px;
+    border: 1px solid #424242;
+    z-index:1200;
+}
+
+.d3-context-menu ul{
+    list-style-type: none;
+    margin: 0px 0px;
+    padding: 0px;
+    cursor: default;
+}
+
+.d3-context-menu ul li{
+    padding: 4px 16px;
+}
+
+.hover_text * {
+    pointer-events: none;
+}
+.hover_text_line * {
+    pointer-events: none;
+}
+
+.d3-context-menu ul li:hover {
+    background-color: #4677f8;
+    color: #fefefe;
+}
+.change-element {
+    position: absolute;
+    display: none;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    /*font-family: Arial, sans-serif;*/
+    font-size: 14px;
+    max-width: 60px;
+    border: 1px solid #d4d4d4;
+    z-index:1200;
+}
+.change-element input{
+    width: 30px;
+}
+.change-element ul{
+    list-style-type: none;
+    margin: 2px 2px 2px 2px;
+    padding: 0px 0px 0px 0px;
+    cursor: default;
+}
+
+.change-element ul li{
+    padding: 0px 0px;
+}
+
+.change-element ul li:hover {
+    background-color: #212121;
+    color: #ffffff;
+}
+
+
+.attribute-table{
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    overflow: visible;
+}
+.attribute-table td{
+    padding: 2px 10px 2px 5px;
+}
+.attribute-table .col-1{
+    width: 40%;
+    text-align: right;
+}
+.attribute-table .col-2{
+    width: 60%;
+    text-align: right;
+
+}
+.attribute-table .col-2 input{
+    padding-left: 2px;
+    width: 100%;
+    color: black;
+}
+.attribute-table .col-2 textarea{
+    padding-left: 2px;
+    width: 100%;
+    color: black;
+}
+.attribute-table .col-2 select{
+    padding-left: 2px;
+    width: 100%;
+    color: black;
+}
+.attribute-table .col-2{
+    text-align: left;
+}
+#parameter{
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 100 !important;
+}
+.hover_text {
+    /*visibility: hidden;*/
+    min-width: 50px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 3px 3px 3px 3px;
+    /* Position the tooltip */
+    position: absolute;
+    /*box-shadow: 3px 3px 3px #888888;*/
+    z-index: 1;
+}
+
+.hover_text_line {
+    /*visibility: hidden;*/
+    min-width: 50px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 3px 3px 3px 3px;
+    /* Position the tooltip */
+    position: absolute;
+    /*box-shadow: 3px 3px 3px #888888;*/
+    z-index: 1;
+}
+.hover_text span{
+    margin: 5px;
+    padding: 3px 3px 3px 3px;
+}
+.default-button{
+    background-color: #888888;
+
+}
+.default-button:hover{
+    background-color: #444444;
+    border: 1px #666666 solid;
+}
+.cancel-button{
+    background-color: #f44336;
+}
+.cancel-button:hover{
+    background-color: #aa2222;
+    border: 1px #666666 solid;
+}
+.accept-button{
+    background-color: #4336f4;
+}
+.accept-button:hover{
+    background-color: #2222aa;
+    border: 1px #666666 solid;
+}
+#search-box{
+    padding: 0px 5px 0px 3px;
+    border-radius: 3px;
+    /*margin-right: 3px;*/
+    /*border: 0px;*/
+    width: 100%;
+    height: 100%;
+    /*top: 0px;*/
+    /*position: fixed;*/
+}
+
+.project-search-view .message {
+    padding-left: 20px;
+    color: white;
+}
+#nameproject:hover{
+    cursor:pointer;
+}
+
+.code-highlight
+{
+    background: rgba(255, 255, 0, 0.8);
+    position: absolute;
+}
+
+#code-editor{
+    font-size: 15px;
+}
+
+.ace_scrollbar-h {
+    height: 8px !important;
+}
+
+.ace_scrollbar-v {
+    width: 8px !important;
+}
+
+p.change-name, div.impact-node > p {
+    font-size: 14px;
+}

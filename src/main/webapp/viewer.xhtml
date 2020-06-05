@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:spring="http://www.springframework.org/tags">
+<h:head>
+    <title>Workspace | JCIA</title>
+
+    <h:outputStylesheet library="css" name="vendor/bootstrap-4.0.0.min.css"/>
+    <h:outputStylesheet library="css" name="vendor/font-awesome-4.3.0.min.css"/>
+    <h:outputStylesheet library="css" name="main.css"/>
+
+    <h:outputStylesheet library="css" name="vendor/animate.min.css"/>
+    <h:outputStylesheet library="css" name="vendor/style.css"/>
+    <h:outputStylesheet library="css" name="vendor/waves.min.css"/>
+
+    <h:outputStylesheet library="css" name="vendor/navigationbar.css"/>
+    <h:outputStylesheet library="css" name="preloader.css"/>
+    <h:outputStylesheet library="css" name="rightBox.css"/>
+
+
+
+
+    <h:outputScript name="scripts/vendor/waves.js"/>
+
+    <h:outputScript name="scripts/vendor/jquery-3.1.0.min.js"/>
+    <h:outputScript name="scripts/vendor/jquery-ui-1.11.4.min.js"/>
+    <h:outputScript name="scripts/vendor/tether.min.js"/>
+    <h:outputScript name="scripts/vendor/bootstrap-4.0.0.min.js"/>
+    <h:outputScript name="scripts/vendor/d3.v3.min.js"/>
+    <h:outputScript name="scripts/vendor/d3-zoom.v1.min.js"/>
+    <h:outputScript name="scripts/vendor/ace/ace.js"/>
+
+    <h:outputScript name="scripts/api/api.js"/>
+    <h:outputScript name="scripts/config/config.js"/>
+    <h:outputScript name="scripts/config/view_config.js"/>
+    <h:outputScript name="scripts/env.js"/>
+    <h:outputScript name="scripts/data_parser.js"/>
+    <h:outputScript name="scripts/view_manager.js"/>
+    <h:outputScript name="scripts/change_types.js"/>
+    <h:outputScript name="scripts/utils/util.js"/>
+    <h:outputScript name="scripts/utils/line.js"/>
+    <h:outputScript name="scripts/utils/ImageSave.js"/>
+    <h:outputScript name="scripts/events/events.js"/>
+    <h:outputScript name="scripts/d3-context-menu.js"/>
+    <h:outputScript name="scripts/graph/Segment.js"/>
+
+    <!--<h:outputScript name="scripts/dataflow/FlowDiagram.js"/>-->
+    <h:outputScript name="scripts/views/graph_template.js"/>
+    <h:outputScript name="scripts/views/dependence_graph_template.js"/>
+    <h:outputScript name="scripts/views/dependence_view.js"/>
+    <h:outputScript name="scripts/views/changeset_view.js"/>
+    <h:outputScript name="scripts/views/impactset_view.js"/>
+    <h:outputScript name="scripts/data_manager.js"/>
+    <h:outputScript name="scripts/views/central_view.js"/>
+    <h:outputScript name="scripts/views/view.js"/>
+    <h:outputScript name="scripts/views/tree_view.js"/>
+    <h:outputScript name="scripts/views/project_view.js"/>
+    <h:outputScript name="scripts/views/project_search_view.js"/>
+    <h:outputScript name="scripts/test.js"/>
+    
+</h:head>
+<h:body>
+
+    <div id="preloader"></div>
+
+    <input id="cs-upload" type="file" name="file" class="hidden"/>
+<!--    <h:form id="view-source-code-form" styleClass="hidden" target="_blank">-->
+<!--        <h:inputHidden id="file-node-id" value="#{codeEditorController.fileId}"/>-->
+<!--        <h:commandButton id="btn-view-src" value="" action="#{codeEditorController.displaySourceCode}"/>-->
+<!--    </h:form>-->
+
+    <h:form>
+        <div id="menubar-container" style="border-bottom: 1px #000 solid" class="container">
+            <div id="menubar">
+                <div id="menus" class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <h:commandLink action="${uploadController.index()}" styleClass="home-menu">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    </h:commandLink>
+                                </li>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Option</a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:commandLink value="Java" action="${uploadController.index()}"/></li>
+                                        <li><h:commandLink value="Java Compare" action="${uploadVersionsController.index()}"/></li>
+                                        <li><h:commandLink value="Cpp" action="${cppUploadController.index()}"/></li>
+                                        <li><h:commandLink value="Cpp Compare" action="${cppUploadVersionsController.index()}"/></li>
+                                        <li class="divider"></li>
+                                        <li><h:commandLink value="Logout" action="#{accountController.logout()}"/></li>
+                                    </ul>
+                                </li>
+<!--                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">CIA</a>-->
+<!--                                    <ul class="dropdown-menu">-->
+<!--                                        <li class="dropdown-submenu">-->
+<!--                                            <a href="#" onclick="ChangeSetView.uploadChangeset()">Analyze</a>-->
+<!--                                        </li>-->
+<!--                                        <li><a href="#" onclick="ChangeSetView.addChangeSetFromUpload()">Upload Change Set</a></li>-->
+<!--                                        <li><a href="#" onclick="ImpactSetView.exportData()">Export Data</a></li>-->
+<!--                                        <li class="divider"></li>-->
+<!--                                        <li><a href="#">Impact Level: 1</a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:form>
+
+    <script type="text/javascript">
+        // load initial data
+        $(document).ready(function() {
+
+            $(document).on("change", '#cs-upload', function(e) {
+                EXTENSION_API.analyzeUploadData(e.target.files[0]).done(res => {
+                    if (res.message !== "")
+                        alert(res.message);
+
+                    ChangeSetView.addToChangeSetFromUpload(res.data);
+                    $("#cs-upload").val("");
+                });
+            });
+
+            let loadRootNodeTask = new Promise((resolve, reject) => {
+                TREE_API.getRootNodeData().done(res => {
+                    if(!res.error) {
+                        let data = res.data;
+                        resolve(data);
+                    } else reject('error while getting tree data');
+                });
+            });
+
+            loadRootNodeTask.then((rootNodeData) => {
+                displayComponents(rootNodeData);
+
+            }).catch(error => {
+                alert('can not display componentTypes');
+            });
+        });
+
+        function displayComponents(data) {
+            DivManager.init();
+
+            // display dependence view
+            Data.parseData(data).then(res => {
+                if (res !== "done") {
+                    alert("Error when parsing data!");
+                }
+                $(".tab-option").val("All");
+            });
+        }
+
+    </script>
+
+    <div class="right-box">
+
+    </div>
+    <div class="menu">
+        <a class="beauty download">
+
+        </a>
+        <div class="beauty button">
+            ordered list
+        </div>
+    </div>
+</h:body>
+</html>
+

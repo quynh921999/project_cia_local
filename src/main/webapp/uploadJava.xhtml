@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <title>JCIA - Java Change Impact Analysis Tool</title>
+
+    <h:outputScript name="scripts/vendor/jquery-3.1.0.min.js"/>
+    <h:outputScript name="scripts/vendor/tether.min.js"/>
+    <h:outputScript name="scripts/vendor/bootstrap-4.0.0.min.js"/>
+    <h:outputScript name="scripts/vendor/bootstrap-tagsinput.min.js"/>
+    <h:outputScript library="scripts" name="upload.js"/>
+
+    <h:outputStylesheet library="css" name="vendor/bootstrap-4.0.0.min.css"/>
+    <h:outputStylesheet library="css" name="vendor/font-awesome-4.3.0.min.css"/>
+    <h:outputStylesheet library="css" name="vendor/bootstrap-tagsinput.css"/>
+    <h:outputStylesheet library="css" name="vendor/checkbox.css"/>
+
+    <style type="text/css">
+        .file {
+            display: none;
+        }
+
+        .bootstrap-tagsinput {
+            min-width: 100%;
+        }
+
+        .checkbox {
+            padding-left: 10px;
+        }
+
+        .checkbox label {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .checkbox-same-color input[type="checkbox"]:checked + label::before {
+            background-color: rgba(18, 80, 255, 0.73);
+            border-color: rgba(18, 80, 255, 0.73);
+        }
+
+        .checkbox-same-color input[type="checkbox"]:checked + label::after {
+            color: #fff;
+        }
+
+    </style>
+</h:head>
+<h:body>
+
+    <!-- Navigation -->
+    <ui:include src="/tpl/nav.xhtml"/>
+
+    <div class="container">
+        <div class="alert alert-warning">
+            Please remove auto-generated folders (Ex: <code>/bin</code>, <code>/build</code>,
+            <code>/target</code>,...) before uploading!
+        </div>
+
+        <div class="alert alert-danger" id="error-mes" style="display: none">#{uploadController.messageError}</div>
+
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">Prepare for uploading postData</h4>
+                <h:form id="analyze-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Project Zip</label>
+                        <div class="input-group input-browse">
+                            <input type="text" id="fake-file" class="form-control input-md" placeholder="No file chosen"
+                                   disabled="disabled"/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary input-md" type="button">
+                                    Choose
+                                </button>
+                            </span>
+                        </div>
+                        <h:inputFile id="analyze-input-file" styleClass="file" value="#{uploadController.postData}"
+                                     validator="#{uploadController.validateFile}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Java Source Path</label>
+                        <h:inputText styleClass="form-control" value="#{uploadController.javaSourceFolder}"/>
+                        <small class="form-text text-muted">Path to java source of postData. Eg.
+                            <strong>src/java</strong> is default path for NetBeans projects.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ignored Components</label>
+                        <h:inputText styleClass="bootstrap-tagsinput" value="#{uploadController.ignoredComponents}"
+                                     a:data-role="tagsinput"/>
+                        <small class="form-text text-muted">Fill ignored patterns. This will help analyzers ignore unrelated componentTypes. Usage.
+                            <strong>*.extension</strong> or <strong>path/to/ignored/folder/</strong></small>
+                    </div>
+
+                    <hr/>
+
+                    <div class="form-group">
+                        <label>Weight Calculation Method</label>
+                        <div class="checkbox checkbox-same-color">
+                            <h:selectBooleanCheckbox value="#{uploadController.usingNewWeight}"
+                                                     styleClass="form-check-input" id="usingNewWeight"/>
+                            <h:outputLabel styleClass="form-check-label" value="Using new Weight calculation method"
+                                           for="usingNewWeight"/>
+                        </div>
+                        <small class="form-text text-muted">Whether should the weight be calculated using new method or not.</small>
+                    </div>
+
+                    <hr/>
+
+                    <div class="form-group pull-right">
+                        <h:commandButton value="Upload" action="#{uploadController.upload()}" class="btn btn-primary"
+                                         id="upload"/>
+                        <button type="reset" value="Reset" class="btn btn-default">Reset</button>
+                    </div>
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).on('click', '.input-browse', function () {
+            var file = $(this).parent().find('.file');
+            file.trigger('click');
+        });
+        $(document).on('change', '.file', function () {
+            $(this).parent().find('#fake-file').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+        });
+
+        /*
+         * Quy: disable enter
+         * */
+        $(document).ready(function () {
+            $("form").bind("keypress", function (e) {
+                if (e.keyCode === 13) {
+                    return false;
+                }
+            });
+        });
+
+        function onDisforcus() {
+            $('#tagInput').disabled = true;
+        }
+    </script>
+</h:body>
+</html>

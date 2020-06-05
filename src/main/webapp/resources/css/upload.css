@@ -1,0 +1,25 @@
+.file {
+    display: none;
+}
+
+.bootstrap-tagsinput {
+    min-width: 100%;
+}
+
+.checkbox {
+    padding-left: 10px;
+}
+
+.checkbox label {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.checkbox-same-color input[type="checkbox"]:checked + label::before {
+    background-color: rgba(18, 80, 255, 0.73);
+    border-color: rgba(18, 80, 255, 0.73);
+}
+
+.checkbox-same-color input[type="checkbox"]:checked + label::after {
+    color: #fff;
+}

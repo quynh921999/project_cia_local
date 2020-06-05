@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:form id="nav-form">
+    <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
+        <div class="flex-row d-flex">
+            <a class="navbar-brand mb-1" href="#" title="Change Impact Analysis Tool"><b>CIA</b></a>
+        </div>
+        <div class="navbar-collapse collapse" id="collapsingNavbar">
+            <ul class="navbar-nav">
+                <li class="#{view.viewId eq '/uploadJava.xhtml' ? 'nav-item active' : 'nav-item'}">
+                    <h:commandLink styleClass="nav-link" action="#{uploadController.index}" value="Java"/>
+                </li>
+                <li class="#{view.viewId eq '/versionJava.xhtml' ? 'nav-item active' : 'nav-item'}">
+                    <h:commandLink styleClass="nav-link" action="#{uploadVersionsController.index}" value="Java Compare"/>
+                </li>
+                <li class="#{view.viewId eq '/uploadCpp.xhtml' ? 'nav-item active' : 'nav-item'}">
+                    <h:commandLink styleClass="nav-link" action="#{cppUploadController.index}" value="Cpp"/>
+                </li>
+                <li class="#{view.viewId eq '/versionCpp.xhtml' ? 'nav-item active' : 'nav-item'}">
+                    <h:commandLink styleClass="nav-link" action="#{cppUploadVersionsController.index}" value="Cpp Compare"/>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hello, <strong><h:outputText value="#{sessionScope['full_name']}"/></strong>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <h:commandLink styleClass="dropdown-item" value="Logout" action="#{accountController.logout()}"/>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</h:form>
+</html>

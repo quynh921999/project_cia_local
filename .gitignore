@@ -1,0 +1,13 @@
+#IntelliJ IDEA
+.idea/
+
+#Maven
+target/
+build/
+
+#Resources
+*.lnk
+*.zip
+
+#Test
+testData/

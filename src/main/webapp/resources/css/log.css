@@ -1,0 +1,30 @@
+.log-msg {
+    font-family: Consolas, Tahoma;
+    color: #ffffff;
+}
+
+.log-time{
+    color: #00FF00 !important;
+}
+
+.log-err{
+    color: red !important;
+}
+
+.terminal-body {
+    background: #222;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+    height: 400px;
+    overflow: auto;
+    padding: 10px 0px 0px 10px;
+
+}
+
+.terminal-head {
+    padding: 5px;
+}
+
+.jcia-toolbar{
+    margin-bottom: 25px;
+    text-align: right;
+}

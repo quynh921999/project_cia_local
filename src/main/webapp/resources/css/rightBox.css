@@ -1,0 +1,138 @@
+.menu {
+    position: fixed;
+    top: 12px;
+    right: 2px;
+    z-index: 2;
+    width: 250px;
+    height: 35px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 4px;
+    /*background-color: white;*/
+    /*overflow: hidden;*/
+    /*border-bottom: 1px solid rgba(232, 232, 232, 1);*/
+}
+
+.beauty {
+    cursor: pointer;
+    /*background-color: white;*/
+    width: 100%;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: black;
+    border-radius: 50px;
+    line-height: 34px;
+    background-color: white;
+    border: 2px solid #494949 !important;
+    transition: background .3s, transform .3s, box-shadow .3s;
+}
+
+.beauty:hover {
+    /*color: #494949 !important;*/
+    /*background-color: white;*/
+    color: #ffffff !important;
+    background: rgb(55, 71, 79) !important;
+    transform: translate3d(0, -2px, 0);
+    border: 1px;
+}
+
+.right-box {
+    position: fixed;
+    top: 51px;
+    right: 0;
+    height: 92vh;
+    width: 22vw;
+    min-width: 200px;
+    background-color: rgba(46, 49, 49, 1);
+    z-index: 99;
+    overflow-x: auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.5s ease-out;
+    color: white;
+}
+
+.class-wrapper {
+    width: 100%;
+    min-height: 2em;
+    padding: 3px;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: row;
+    /*cursor: pointer;*/
+    background-color: rgb(55, 71, 79);
+    position: relative;
+}
+
+.class-wrapper:hover {
+    background-color: rgba(34, 49, 63, 1);
+}
+
+.class-wrapper:before {
+    content: "";
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(107, 200, 196);
+    z-index: 3;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.class-wrapper:hover:before {
+    opacity: 1;
+}
+
+.icon {
+    min-width: 20px;
+    min-height: 20px;
+    width: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+    margin-top: 4px;
+}
+
+.text-content {
+    padding-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.attribute {
+    background-image: url('../resources/images/VariableNode.png');
+    margin-left: 8px;
+}
+
+.method {
+    background-image: url('../resources/images/FunctionNode.png');
+    margin-left: 8px;
+    /*background-color: rgba(46, 204, 113, 1);*/
+}
+
+.class {
+    background-image: url('../resources/images/ClassNode.png');
+    margin-left: 8px;
+    /*background-color: rgba(255, 255, 204, 1);*/
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.class + .text-content {
+    /*font-weight: bold;*/
+}
+
+.yellow-before:before {
+    background-color: rgb(236, 174, 31)
+}
+
+.green-before:before {
+    background-color: rgb(61, 176, 77);
+}

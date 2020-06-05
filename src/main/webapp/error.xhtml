@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Error | JCIA</title>
+
+    <h:outputScript name="scripts/vendor/jquery-3.1.0.min.js"/>
+    <h:outputScript name="scripts/vendor/tether.min.js"/>
+    <h:outputScript name="scripts/vendor/bootstrap-4.0.0.min.js"/>
+
+    <h:outputStylesheet library="css" name="vendor/bootstrap-4.0.0.min.css"/>
+    <h:outputStylesheet library="css" name="vendor/font-awesome-4.3.0.min.css"/>
+
+</h:head>
+<h:body>
+
+    <!-- Navigation -->
+    <ui:include src="/tpl/nav.xhtml"/>
+
+    <div class="container">
+        <div id="message">
+            <div class="alert alert-danger">
+                #{requestScope['error-message']}
+                <!--<ul>
+                    <ui:repeat value="#{requestScope['error-stack']}" var="stack">
+                        <li>#{stack.className} - #{stack.methodName} - #{stack.fileName} (#{stack.lineNumber})</li>
+                    </ui:repeat>
+                </ul>-->
+            </div>
+        </div>
+
+        <h:form>
+            <h:commandButton value="Back" action="#{uploadController.index}" class="btn btn-primary"/>
+        </h:form>
+    </div>
+</h:body>
+</html>
