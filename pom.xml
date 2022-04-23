@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <jackson.version>2.10.3</jackson.version>
         <struts2.version>2.5.8</struts2.version>
-        <spring.version>5.2.5.RELEASE</spring.version>
+        <spring.version>5.3.19</spring.version>
     </properties>
 
     <dependencies>
